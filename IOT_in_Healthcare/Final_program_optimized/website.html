@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Firebase Data Display</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f8f8f8;
+    }
+
+    h1 {
+      text-align: center;
+      color: #555555;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #ffffff;
+      border: 1px solid #dddddd;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #4caf50;
+      color: #ffffff;
+      border-bottom: 2px solid #357a38;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f1f1f1;
+    }
+
+    tr:hover {
+      background-color: #e0e0e0;
+    }
+    </style>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+  <script>
+    // Initialize Firebase
+    var firebaseConfig = {
+        apiKey: "AIzaSyBiualaUsrhKMrCZn8rangGoZqlYecdpWg",
+        authDomain: "iot-thing-7736f.firebaseapp.com",
+        databaseURL: "https://iot-thing-7736f-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "iot-thing-7736f",
+        storageBucket: "iot-thing-7736f.appspot.com",
+        messagingSenderId: "560980879989",
+        appId: "1:560980879989:web:1d0abba769c7f7b56a663c",
+        measurementId: "G-LN0JLEM12W"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    // Read data from Firebase and display on the webpage
+    function fetchData() {
+      var database = firebase.database();
+      var dataRefs = {
+        bodyTemp: database.ref("Body Temp"),
+        temp: database.ref("Temp"),
+        humidity: database.ref("Humidity"),
+        heartrate: database.ref("Heartrate"),
+        longitude: database.ref("Longitude"),
+        lattitude: database.ref("Lattitude"),
+        step: database.ref("Step"),
+        fall: database.ref("Fall"),
+        fall1: database.ref("Fall1"),
+        fall2: database.ref("Fall2")
+      };
+
+      
+      for (var key in dataRefs) {
+        if (dataRefs.hasOwnProperty(key)) {
+          dataRefs[key].on("value", function(snapshot) {
+            var data = snapshot.val();
+            var label = snapshot.key;
+            var displayElement = document.getElementById("dataDisplay");
+
+            // Check if the table already exists for the label
+            var existingTable = document.getElementById(label + "-table");
+            if (existingTable) {
+              // Append new data to the existing table
+              var dataRow = existingTable.insertRow();
+              var dataCell = dataRow.insertCell();
+              dataCell.innerHTML = data;
+            } else {
+              // Create a new table for the label
+              var table = document.createElement("table");
+              table.id = label + "-table";
+              var headerRow = table.insertRow();
+              var headerCell = headerRow.insertCell();
+              headerCell.innerHTML = "<b>" + label + "</b>";
+              var dataRow = table.insertRow();
+              var dataCell = dataRow.insertCell();
+              dataCell.innerHTML = data;
+
+              // Append the table to the display element
+              displayElement.appendChild(table);
+            }
+          });
+        }
+      }
+    }
+
+    // Fetch data when the webpage loads
+    window.onload = function() {
+      fetchData();
+    };
+  </script>
+</head>
+<body>
+  <h1>Firebase Data Display</h1>
+  <div id="dataDisplay"></div>
+</body>
+</html>
