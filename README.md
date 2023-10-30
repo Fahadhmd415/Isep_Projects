@@ -27,3 +27,7 @@ The game implementation involved drawing and moving the ball and paddles, restri
 
 The Simpletweet library in Processing enabled the tweet posting functionality, triggered when a player reached the winning score. This project showcased the integration of hardware (flex sensor and microcontroller) with software (Processing), providing an interactive gaming experience with real-time social media interaction upon victory.
 
+Project 4 : Tiva Microcontroller integration
+
+In this project, I learned fundamental concepts of connections and microcontrollers. The project involved connecting an LCD, understanding potentiometer functionality, establishing Bluetooth communication between the microcontroller and a computer, and working with a temperature and humidity sensor. This hands-on experience provided valuable insights into hardware connections and sensor interactions, enhancing participants' understanding of microcontroller applications and their practical implementation.
+
