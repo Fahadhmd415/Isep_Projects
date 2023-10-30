@@ -19,3 +19,11 @@ The team configured the Raspberry Pi by installing Raspberry Pi OS and connectin
 
 Data visualization was achieved using HTTP, JavaScript, and Firebase Realtime Database, enabling dynamic webpage updates. The integration allowed for efficient collaboration between Mobile and Fixed platforms, with sensor data processed through Arduino, transmitted to the Raspberry Pi gateway, and visualized in real-time on the project website. This comprehensive system provided accurate monitoring of step counts, fall incidents, and GPS coordinates, enhancing the project's potential applications in real-world scenarios.
 
+Project 3 : Pong Game Development
+
+In this project, a flex sensor, capable of altering resistance when bent, was utilized to create a unique Pong game. The sensor's voltage output was sent from a tm4c123GXL microcontroller to the Processing software. In Processing, a graphical library and IDE designed for visual programming, a Pong game was developed. One paddle was controlled using the flex sensor's variable voltage output, while the other paddle was manipulated with a mouse.
+
+The game implementation involved drawing and moving the ball and paddles, restricting paddle movements within the screen boundaries, and ensuring the ball bounced off paddles. When a player using the flex sensor won (reaching a score of 10), an automatic tweet was posted on Twitter via the Twitter API. To achieve this, access to Twitter's developer account was obtained, and API keys including consumer key, consumer secret key, access token key, and access token secret key were acquired. 
+
+The Simpletweet library in Processing enabled the tweet posting functionality, triggered when a player reached the winning score. This project showcased the integration of hardware (flex sensor and microcontroller) with software (Processing), providing an interactive gaming experience with real-time social media interaction upon victory.
+
