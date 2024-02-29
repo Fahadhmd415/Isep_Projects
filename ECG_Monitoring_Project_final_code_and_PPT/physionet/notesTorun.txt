@@ -1,0 +1,5 @@
+1.	Verify mongodb conncetion in the database
+2.	First run the fastapi_test1.py file on thorny, 
+3.	Run the command in the terminal in api folder, 
+raspberry1@raspberry1:~/Documents/api $ uvicorn fastapi_test1:app --host 0.0.0.0 --port 8000 --reload --ws websockets
+4.	Run the mongodb_test1.py file on thorny, now it will work
